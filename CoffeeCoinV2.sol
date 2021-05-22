@@ -40,7 +40,6 @@ contract CoffeeCoin {
         return _token_symbol;
     }
 
-
     function totalSupply() public view returns (uint) {
         return _totalSupply  - balances[address(0)];
     }
@@ -54,6 +53,7 @@ contract CoffeeCoin {
     }
 
     function approve(address spender, uint tokens) public returns (bool success) {
+        require(tokens > 0, "tokens should be > 0");
         allowed[msg.sender][spender] = tokens;
         emit Approval(msg.sender, spender, tokens);
         return true;
