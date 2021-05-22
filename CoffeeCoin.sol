@@ -70,10 +70,7 @@ contract CoffeeCoin {
         c = a + b;
         require(c >= a);
     }
-    function safeAdd(uint a, uint b) private pure returns (uint c) {
-        c = a + b;
-        require(c >= a);
-    }
+
     function safeSub(uint a, uint b) private pure returns (uint c) {
         require(b <= a); c = a - b; }
     function safeMul(uint a, uint b) private pure returns (uint c)
