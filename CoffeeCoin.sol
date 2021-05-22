@@ -20,7 +20,7 @@ contract CoffeeCoin {
         token_name = "CoffeeWarCoin";
         token_symbol = "CWC";
         decimals = 18;
-        _totalSupply = 4000000;
+        _totalSupply = 8 * 10 ** (8 + 18);
 
         balances[msg.sender] = _totalSupply;
         emit Transfer(address(0), msg.sender, _totalSupply);
