@@ -3,9 +3,9 @@ pragma solidity ^0.8.4;
 // SPDX-License-Identifier: UNLICENSED
 
 contract CoffeeCoin {
-    string private token_name;
-    string private token_symbol;
-    uint8 public decimals;
+    string private _token_name;
+    string private _token_symbol;
+    uint8 private _decimals;
     uint256 private _totalSupply;
     address private _minter;
 
@@ -19,9 +19,9 @@ contract CoffeeCoin {
 
 
     constructor() {
-        token_name = "CoffeeWarCoin";
-        token_symbol = "CWC";
-        decimals = 18;
+        _token_name = "CoffeeWarCoin";
+        _token_symbol = "CWC";
+        _decimals = 18;
         _totalSupply = 8 * 10 ** (8 + 18);
         _minter = msg.sender;
 
@@ -29,13 +29,17 @@ contract CoffeeCoin {
         emit Transfer(address(0), _minter, _totalSupply);
     }
 
-    function name() public view returns (string memory){
-        return token_name;
+    function decimals() public view returns (uint8) {
+        return _decimals;
     }
 
-    function symbol() public  view returns (string memory) {
-        return token_symbol;
+    function name() public view returns (string memory){
+        return _token_name;
     }
+    function symbol() public  view returns (string memory) {
+        return _token_symbol;
+    }
+
 
     function totalSupply() public view returns (uint) {
         return _totalSupply  - balances[address(0)];
