@@ -8,8 +8,9 @@ contract CoffeeCoin {
     uint8 public decimals;
     uint256 private _totalSupply;
 
-    event Transfer(address indexed from, address indexed to, uint tokens);
-    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+
 
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
@@ -24,14 +25,14 @@ contract CoffeeCoin {
         balances[msg.sender] = _totalSupply;
         emit Transfer(address(0), msg.sender, _totalSupply);
     }
-    
+
     function name() public view returns (string memory){
         return token_name;
     }
     function symbol() public  view returns (string memory) {
         return token_symbol;
     }
-        
+
     function totalSupply() public view returns (uint) {
         return _totalSupply  - balances[address(0)];
     }
@@ -64,13 +65,13 @@ contract CoffeeCoin {
         emit Transfer(from, to, tokens);
         return true;
     }
-    
+
     function safeAdd(uint a, uint b) private pure returns (uint c) {
         c = a + b;
         require(c >= a);
     }
     function safeSub(uint a, uint b) private pure returns (uint c) {
-        require(b <= a); c = a - b; } function safeMul(uint a, uint b) public pure returns (uint c) 
+        require(b <= a); c = a - b; } function safeMul(uint a, uint b) public pure returns (uint c)
         { c = a * b; require(a == 0 || c / a == b); } function safeDiv(uint a, uint b) public pure returns (uint c) { require(b > 0);
         c = a / b;
     }
