@@ -53,7 +53,10 @@ contract CoffeeCoin {
     }
 
     function approve(address spender, uint tokens) public returns (bool success) {
+        require(balances[msg.sender] >= tokens, "Check balance");
         require(tokens > 0, "tokens should be > 0");
+        require(spender != msg.sender, "You can't approve coins to your account");
+
         allowed[msg.sender][spender] = tokens;
         emit Approval(msg.sender, spender, tokens);
         return true;
