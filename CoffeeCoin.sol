@@ -1,14 +1,19 @@
 pragma solidity ^0.8.4;
+
 // SPDX-License-Identifier: UNLICENSED
 
-contract CoffeeCoin is Protocol {
+contract CoffeeCoin {
     string private token_name;
     string private token_symbol;
     uint8 public decimals;
     uint256 private _totalSupply;
 
+    event Transfer(address indexed from, address indexed to, uint tokens);
+    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
+
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
+
 
     constructor() {
         token_name = "CoffeeWarCoin";
@@ -20,7 +25,7 @@ contract CoffeeCoin is Protocol {
         emit Transfer(address(0), msg.sender, _totalSupply);
     }
     
-    function name() public view returns (string){
+    function name() public view returns (string memory){
         return token_name;
     }
     function symbol() public  view returns (string memory) {
